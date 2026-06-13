@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Dia dos Namorados, Nini! <3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4e3db;
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            font-family: 'Montserrat', sans-serif;
+            color: #704235;
+            overflow-x: hidden;
+        }
+
+        /* Container Principal Maior conforme pedido */
+        .container {
+            max-width: 800px; /* Aumentei o tamanho total do site */
+            margin: 0 auto;
+            padding: 30px 25px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 4rem; /* Texto do cabeçalho maior */
+            margin-bottom: 0;
+            color: #b85d43;
+            text-shadow: 2px 2px 4px rgba(184, 93, 67, 0.1);
+            animation: heartbeat 1.8s infinite;
+        }
+
+        header p {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem; /* Subtítulo maior */
+            margin-top: -5px;
+            color: #8c5344;
+        }
+
+        /* Player Container com Glassmorphism Sophisticado */
+        .player-container {
+            background: rgba(255, 255, 255, 0.7); /* Vidro mais transparente */
+            border-radius: 28px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 12px 35px rgba(112, 66, 53, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+        }
+
+        .album-art {
+            width: 260px; /* Capa do álbum maior */
+            height: 260px;
+            border-radius: 20px;
+            margin: 0 auto 25px;
+            background-color: #704235;
+            background-image: url('foto_verso.jpg'); 
+            background-size: cover;
+            background-position: center;
+            border: 5px solid #fff; /* Borda branca mais grossa */
+            box-shadow: 0 10px 25px rgba(112, 66, 53, 0.25);
+        }
+
+        .music-title {
+            font-weight: 600;
+            font-size: 1.6rem; /* Título maior */
+            margin-bottom: 5px;
+            letter-spacing: 0.8px;
+            color: #4a2b22;
+        }
+
+        .music-artist {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* Barra de Progresso Arrumada e Bonita */
+        .progress-area {
+            width: 100%;
+            height: 6px;
+            background: rgba(112, 66, 53, 0.25);
+            border-radius: 6px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #b85d43, #d9785c);
+            border-radius: 6px;
+            position: relative;
+            transition: width 0.1s linear;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            right: -7px;
+            top: -4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #b85d43;
+            box-shadow: 0 0 6px rgba(184, 93, 67, 0.6);
+        }
+
+        .time-stamps {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0.75;
+            margin-bottom: 25px;
+        }
+
+        /* Botão de Play com Animação de Pulso */
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .play-btn {
+            background: linear-gradient(145deg, #704235, #8a5242);
+            border: none;
+            width: 80px; /* Botão de play maior */
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s;
+            box-shadow: 0 8px 20px rgba(112, 66, 53, 0.4);
+            animation: pulse-btn 2s infinite;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(145deg, #b85d43, #c96b50);
+        }
+
+        .play-btn svg {
+            fill: #f4e3db;
+            width: 35px;
+            height: 35px;
+        }
+
+        /* === Nova Seção: Mural de Fotos === */
+        .mural-fotos {
+            margin-top: 60px;
+            padding: 30px 10px;
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+            text-align: center;
+            position: relative;
+        }
+
+        .mural-title {
+            font-family: 'Caveat', cursive;
+            font-size: 3rem;
+            color: #b85d43;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Cartão Polaroid com Toque Humano (Durex e Clipes) */
+        .memory-card {
+            width: 45%; /* Mobile friendly, wrap */
+            background: #fff;
+            padding: 10px 10px 30px;
+            border-radius: 2px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+            position: relative;
+            transform: rotate(var(--rotacao, 0deg)); /* Rotação aleatória */
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+        }
+
+        /* Efeito de Durex/Washi Tape Decorativo */
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(var(--rotacao-tape, 5deg));
+            width: 80px;
+            height: 25px;
+            background: rgba(184, 93, 67, 0.7); /* Cor terracota semi-transparente */
+            opacity: 0.9;
+            clip-path: polygon(0% 10%, 100% 0%, 95% 90%, 5% 100%); /* Efeito rasgado */
+        }
+
+        .memory-photo {
+            width: 100%;
+            aspect-ratio: 1/1; /* Foto quadrada */
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #f1f1f1;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+        }
+
+        .caption-human {
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
+            color: #704235;
+            margin: 15px 5px 0;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+
+        /* Frases fofas baseadas nos nomes que você pediu */
+        .card-gotica { --rotacao: -3deg; --rotacao-tape: -6deg; }
+        .card-gotica .memory-photo { background-image: url('Nicole_Gotica.jpg'); }
+
+        .card-presente { --rotacao: 4deg; --rotacao-tape: 7deg; }
+        .card-presente .memory-photo { background-image: url('Presente_Nicole_me_deu.jpg'); }
+
+        .card-motivo { --rotacao: -2deg; --rotacao-tape: 4deg; }
+        .card-motivo .memory-photo { background-image: url('Nicole_Motivo.jpg'); }
+
+        .card-arrumada { --rotacao: 3deg; --rotacao-tape: -8deg; }
+        .card-arrumada .memory-photo { background-image: url('Nicole_Arrumada.jpg'); }
+
+        /* Clipes de papel desenhados em CSS */
+        .card-motivo::after, .card-gotica::after {
+            content: '📎';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        /* === Fim da Seção Mural === */
+
+        /* Design Melhorado da Carta de Amor Maior */
+        .love-letter {
+            background: #fffcf9;
+            padding: 40px 35px; /* Carta maior */
+            border-radius: 10px 10px 40px 10px;
+            box-shadow: 0 12px 30px rgba(112, 66, 53, 0.1);
+            text-align: left;
+            line-height: 1.8;
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem; /* Texto da carta maior */
+            position: relative;
+            margin-top: 60px;
+            border-left: 5px solid #b85d43;
+            color: #5c352a;
+        }
+
+        /* Efeito de corações maior */
+        .heart-fall {
+            position: fixed;
+            top: -10vh;
+            font-size: 24px;
+            color: #b85d43;
+            user-select: none;
+            z-index: 999;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        /* Animações */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse-btn {
+            0% { box-shadow: 0 0 0 0 rgba(184, 93, 67, 0.6); }
+            70% { box-shadow: 0 0 0 20px rgba(184, 93, 67, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(184, 93, 67, 0); }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) translateX(25px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="musica-local" src="Musica_de_Nicole.mp3"></audio>
+
+    <div class="container">
+        <header>
+            <h1>Feliz Dia dos Namorados</h1>
+            <p>Para minha eterna Nini 🤍</p>
+        </header>
+
+        <div class="player-container">
+            <div class="album-art"></div>
+            <div class="music-title">You're All I Want</div>
+            <div class="music-artist">Cigarettes After Sex | De: Otávio para: Nini</div>
+
+            <div class="progress-area">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="time-stamps">
+                <span id="current-time">0:00</span>
+                <span id="total-time">0:00</span>
+            </div>
+
+            <div class="controls">
+                <button class="play-btn" id="play-button" onclick="togglePlay()">
+                    <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="mural-fotos">
+            <h2 class="mural-title">Alguns Nossos Momentos ✨</h2>
+            <p style="margin-top: -10px; margin-bottom: 20px; font-weight: 300; font-size: 0.9rem; opacity: 0.7;">(Pequenas lembranças que guardo com todo amor do mundo...)</p>
+            <div class="gallery-container">
+                
+                <div class="memory-card card-gotica">
+                    <div class="memory-photo"></div>
+                    <p class="caption-human">"Minha gotiquinha favorita <3 Tava linda demais!"</p>
+                </div>
+                
+                <div class="memory-card card-presente">
+                    <div class="memory-photo"></div>
+                    <p class="caption-human">"A primeira coisinha que você me deu... guardo com todo amor desse mundo."</p>
+                </div>
+                
+                <div class="memory-card card-motivo">
+                    <div class="memory-photo"></div>
+                    <p class="caption-human">"Você é o único motivo do meu sorriso, gata. Simples assim."</p>
+                </div>
+                
+                <div class="memory-card card-arrumada">
+                    <div class="memory-photo"></div>
+                    <p class="caption-human">"Eita preula, que gata! Tava absurda nesse dia!"</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="love-letter">
+            Eu fiz esta carta pensando em Ti... e pensando em todos os momentos mágicos que tivemos juntos. Adoro teus pequenos gestos de carinho e o tempo que nós gasta por nós. Todas as tuas provas de amor, por mais que pense que não tenha notado, eu guardei elas em meu coração e lembro de cada uma. Nosso delírio continua aqui... Sempre seu, Otávio. 🌹
+        </div>
+    </div>
+
+    <script>
+        let isPlaying = false;
+        let heartInterval;
+        const musica = document.getElementById('musica-local');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeText = document.getElementById('current-time');
+        const totalTimeText = document.getElementById('total-time');
+        const playBtn = document.getElementById('play-button');
+
+        musica.onloadedmetadata = function() {
+            formatTime(musica.duration, totalTimeText);
+        };
+
+        function togglePlay() {
+            if (!isPlaying) {
+                musica.play().catch(error => {
+                    console.log("Erro: Navegador bloqueou áudio local. Clique na tela antes.");
+                });
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                playBtn.style.animation = 'none';
+                isPlaying = true;
+                startHeartRain();
+            } else {
+                musica.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+                playBtn.style.animation = 'pulse-btn 2s infinite';
+                isPlaying = false;
+                clearInterval(heartInterval);
+            }
+        }
+
+        musica.addEventListener('timeupdate', () => {
+            if (musica.duration) {
+                const percentage = (musica.currentTime / musica.duration) * 100;
+                progressBar.style.width = percentage + '%';
+                formatTime(musica.currentTime, currentTimeText);
+            }
+        });
+
+        musica.onended = function() {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            playBtn.style.animation = 'pulse-btn 2s infinite';
+            isPlaying = false;
+            progressBar.style.width = '0%';
+            currentTimeText.textContent = "0:00";
+            clearInterval(heartInterval);
+        };
+
+        function formatTime(time, element) {
+            if (isNaN(time)) return;
+            let mins = Math.floor(time / 60);
+            let secs = Math.floor(time % 60);
+            if (secs < 10) secs = '0' + secs;
+            element.textContent = `${mins}:${secs}`;
+        }
+
+        function createHeart() {
+            if (!isPlaying) return;
+            const heart = document.createElement('div');
+            heart.classList.add('heart-fall');
+            heart.innerText = ['❤️', '💖', '💝', '🌸', '🌹'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        function startHeartRain() {
+            clearInterval(heartInterval);
+            heartInterval = setInterval(createHeart, 450);
+        }
+    </script>
+</body>
+</html>
